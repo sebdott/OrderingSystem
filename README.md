@@ -23,5 +23,6 @@ Local Path/Ports : -
 - GrayLog : localhost:9038
 - MongoDB : localhost:27017
 - ElasticSearch : localhost:9200
+- Portainer : localhost:9000
 
 
