@@ -13,7 +13,8 @@ Technologies:-
 - Log Management : Graylog (https://www.graylog.org)
 - DB: Mongo DB  (https://www.mongodb.com/)
       Elastic Search - Graylog  (www.elastic.co/)
-- PubSub/Message/Stream : Kafka , ZooKeeper (https://www.confluent.io/)
+- PubSub/Message/Stream : Kafka (https://www.confluent.io/)
+                          ZooKeeper (https://zookeeper.apache.org/)
 - Docker Management UI : Portainer (https://portainer.io/)
 
 Local Path/Ports : -
