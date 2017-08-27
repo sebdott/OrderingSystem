@@ -1,0 +1,7 @@
+---
+hostPort: kafka:9999
+username:
+password:
+
+rules:
+- pattern: ".*"

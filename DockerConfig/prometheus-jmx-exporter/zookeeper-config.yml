@@ -1,0 +1,7 @@
+---
+hostPort: zookeeper:9998
+username:
+password:
+
+rules:
+- pattern: ".*"

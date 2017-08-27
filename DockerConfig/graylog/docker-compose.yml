@@ -1,0 +1,6 @@
+version: '3'
+services:
+  graylog-metrics-gateway:
+    build: .
+    ports:
+      - 9091:9091

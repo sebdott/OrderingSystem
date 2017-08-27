@@ -1,0 +1,105 @@
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:3.2.1
+    hostname: zookeeper
+    ports:
+      - '32182:32181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      JMX_PORT: 9998
+  kafka:
+    image: confluentinc/cp-kafka:3.2.1
+    hostname: kafka
+    ports:
+      - '9092:9092'
+      - '29092:29092'
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      # Following line is needed for Kafka versions 0.11+
+      # in case you run less than 3 Kafka brokers in your
+      # cluster because the broker config
+      # `offsets.topic.replication.factor` (default: 3)
+      # is now enforced upon topic creation
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      JMX_PORT: 9999
+
+
+  metrics-gateway:
+    image: prom/pushgateway
+    ports:
+      - 9091:9091
+
+  prometheus-server:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    links:
+      - metrics-gateway:metrics-gateway
+    volumes:
+      - ./DockerConfig/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana-ui:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    links:
+      - prometheus-server
+
+  mongodb:
+    image: mongo:latest
+    ports:
+        - 27017:27017
+
+  elasticsearch:
+    image: "elasticsearch"
+    environment:
+      - cluster.name=graylog
+      - bootstrap.memory_lock=true
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  graylog:
+    image: graylog2/server
+    environment:
+      GRAYLOG_PASSWORD_SECRET: somepasswordpepper
+      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      GRAYLOG_WEB_ENDPOINT_URI: http://localhost:9038/api
+      GRAYLOG_ELASTICSEARCH_HOSTS: http://elasticsearch:9200/
+    links:
+      - mongodb:mongo
+      - elasticsearch:elasticsearch
+    ports:
+      - 9038:9000
+      - 12201:12201/udp
+      - 12202:12202/udp
+      - 1514:1514/udp
+  gonorderingsystems.consumer:
+    image: gonorderingsystems.consumer
+    build:
+      context: ./GONOrderingSystems.Consumer
+      dockerfile: Dockerfile
+
+  gonorderingsystems.api:
+    image: gonorderingsystems.api
+    ports:
+     - 801:80
+    build:
+      context: ./GONOrderingSystems.Api
+      dockerfile: Dockerfile
+      
+  portainer:
+    image: portainer/portainer 
+    ports:
+    - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

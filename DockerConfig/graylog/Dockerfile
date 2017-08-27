@@ -1,0 +1,2 @@
+FROM graylog2/server
+RUN wget -O /usr/share/graylog/plugin/metrics-reporter-prometheus-1.5.0.jar https://github.com/graylog-labs/graylog-plugin-metrics-reporter/releases/download/1.5.0/metrics-reporter-prometheus-1.5.0.jar

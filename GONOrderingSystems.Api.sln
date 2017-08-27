@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BF27FE14-3E39-4485-A9E7-850DE02421F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Consumer", "GONOrderingSystems.Consumer\GONOrderingSystems.Consumer.csproj", "{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8} = {E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Tests", "GONOrderingSystems.Tests\GONOrderingSystems.Tests.csproj", "{3F74C830-F7E4-4E80-8388-204F4D4727A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Api", "GONOrderingSystems.Api\GONOrderingSystems.Api.csproj", "{7166E9B5-AACE-4929-8B38-239B7CC88C75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Logic", "GONOrderingSystems.Logic\GONOrderingSystems.Logic.csproj", "{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Common", "GONOrderingSystems.Common\GONOrderingSystems.Common.csproj", "{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7166E9B5-AACE-4929-8B38-239B7CC88C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7166E9B5-AACE-4929-8B38-239B7CC88C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7166E9B5-AACE-4929-8B38-239B7CC88C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7166E9B5-AACE-4929-8B38-239B7CC88C75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4130FC07-DBF6-4BCE-AFDD-E39A434C5926}
+	EndGlobalSection
+EndGlobal
