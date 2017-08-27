@@ -4,13 +4,17 @@ The Ordering System is a Rest API backend processor
 designed to handle group orders from multiple customers
 
 This is the list of technologies used :- 
-Technologies
+
+Technologies:-
+
 - Main : .NET Core 1.1 , C#
-- Container: Docker
-- Metric : Promethues 
-- Log Management : Graylog
-- DB: Mongo DB 
-- PubSub/Message/Stream : Kafka , ZooKeeper
+- Container: Docker (https://www.docker.com/)
+- Metric : Promethues (https://prometheus.io/)
+- Log Management : Graylog (https://www.graylog.org)
+- DB: Mongo DB  (https://www.mongodb.com/)
+      Elastic Search - Graylog  (www.elastic.co/)
+- PubSub/Message/Stream : Kafka , ZooKeeper (https://www.confluent.io/)
+- Docker Management UI : Portainer (https://portainer.io/)
 
 Local Path/Ports : -
 
