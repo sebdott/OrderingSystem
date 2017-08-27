@@ -14,14 +14,14 @@ Technologies
 
 Local Path/Ports : -
 
-Web Api : localhost:801/swagger
-Zookeeper : localhost:32182
-kafka : localhost:9092
-Prometheus : localhost:9090
-Gafana : localhost:3000
-ZooKeeper : localhost:5557
-GrayLog : localhost:9038
-MongoDB : localhost:27017
-ElasticSearch : localhost:9200
+- Web Api : localhost:801/swagger
+- Zookeeper : localhost:32182
+- kafka : localhost:9092
+- Prometheus : localhost:9090
+- Gafana : localhost:3000
+- ZooKeeper : localhost:5557
+- GrayLog : localhost:9038
+- MongoDB : localhost:27017
+- ElasticSearch : localhost:9200
 
 
