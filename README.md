@@ -25,4 +25,5 @@ Local Path/Ports : -
 - ElasticSearch : localhost:9200
 - Portainer : localhost:9000
 
-
+This is a rough idea of the process of this system.
+![alt text](http://www.codedsphere.com/wp-content/uploads/2017/08/GONSystems.png)
