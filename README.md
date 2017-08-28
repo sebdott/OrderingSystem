@@ -29,6 +29,10 @@ This is the list of technologies used :-
 - **ElasticSearch** : localhost:9200
 - **Portainer** : localhost:9000
 
+**Tools Used:-**
+- Visual Studio 2017
+- Docker
+
 **Installation Instruction**
 
 ```
