@@ -70,44 +70,6 @@ namespace GONOrderingSystems.Tests.Logic.Managers
         }
 
         [Fact]
-        public async void TestCommitOrderSuccess()
-        {
-            _dataProviderMock.Setup(x => x.Update(_order)).Returns(Task.FromResult<bool>(true))
-                .Verifiable();
-            try
-            {
-                var results = await _orderManager.CommitOrder(_order);
-
-                Assert.True(results);
-
-                _dataProviderMock.Verify();
-            }
-            catch (Exception)
-            {
-                Assert.True(false);
-            }
-        }
-        [Fact]
-        public async void TestCommitOrderFail()
-        {
-            _dataProviderMock.Setup(x => x.Update(_order)).Returns(Task.FromResult<bool>(false))
-                .Verifiable();
-
-            try
-            {
-                var results = await _orderManager.CommitOrder(_order);
-
-                Assert.False(results);
-
-                _dataProviderMock.Verify();
-            }
-            catch (Exception)
-            {
-                Assert.True(false);
-            }
-        }
-
-        [Fact]
         public async void TestGetOrderSuccess()
         {
             _dataProviderMock.Setup(x => x.Get(_order.EventID)).Returns(Task.FromResult<Order>(_order))

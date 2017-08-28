@@ -8,7 +8,7 @@ namespace GONOrderingSystems.Common.DataModels
         [ProtoMember(1)]
         public string Host { get; set; }
         [ProtoMember(2)]
-        public string Port { get; set; }
+        public int Port { get; set; }
     }
 
     

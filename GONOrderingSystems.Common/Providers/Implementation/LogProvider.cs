@@ -1,44 +1,63 @@
 ﻿using GONOrderingSystems.Common.Common;
+using GONOrderingSystems.Common.DataModels;
 using GONOrderingSystems.Common.Providers.Interface;
-using Serilog;
-using Serilog.Core;
-using Serilog.Sinks.Graylog;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace GONOrderingSystems.Common.Providers.Implementation
 {
     public class LogProvider : ILogProvider
     {
-        private readonly Logger _logger;
+        private IPubSubProvider _pubSubProvider;
+        private IOptions<KafkaSettings> _kafkaSettings;
 
-        public LogProvider(string hostName, int portNumber)
+        public LogProvider(IPubSubProvider pubSubProvider, IOptions<KafkaSettings> kafkaSettings)
         {
-            _logger = GetLogger(hostName, portNumber);
+            _pubSubProvider = pubSubProvider;
+            _kafkaSettings = kafkaSettings;
         }
 
-        public void PublishError(string eventID, string message, Exception exception)
+        public async Task PublishError(string identifier, string message, Exception exception)
         {
-            _logger.Error(string.Format(Constant.LoggingFormat, eventID , message), exception);
-        }
 
-        public void PublishInfo(string eventID, string message)
-        {
-            _logger.Information(string.Format(Constant.LoggingFormat, eventID, message));
-        }
-
-        private Logger GetLogger(string hostName, int portNumber)
-        {
-            var loggerConfig = new LoggerConfiguration()
-            .WriteTo.Graylog(new GraylogSinkOptions
+            var _logItem = new LogItem()
             {
-                HostnameOrAdress = hostName,
-                Port = portNumber
-            });
+                Identifier = identifier,
+                Message = message,
+                Exception = exception.Message + " " + JsonConvert.SerializeObject(exception.StackTrace),
+                Type = LogType.Error
+            };
 
-            return loggerConfig.CreateLogger();
+            await PublishLog(_logItem);
+        }
 
+        public async Task PublishInfo(string identifier, string message)
+        {
+            var _logItem = new LogItem()
+            {
+                Identifier = identifier,
+                Message = message,
+                Type = LogType.Information
+            };
+
+            await PublishLog(_logItem);
+        }
+
+        private async Task PublishLog(LogItem logitem)
+        {
+            using (var producer = _pubSubProvider.GetPublishProvider(_kafkaSettings.Value.BrokerList,
+                                     _kafkaSettings.Value.ProducerGroupId))
+            {
+                var deliveryReport = producer.ProduceAsync(_kafkaSettings.Value.LogTopic, null, Serializer.Serialize(logitem).ToString(), _kafkaSettings.Value.Partition);
+                deliveryReport.ContinueWith(task =>
+                {
+                    Console.WriteLine($"Partition: {task.Result.Partition}, Offset: {task.Result.Offset}");
+                });
+
+                producer.Flush(1000);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GONOrderingSystems.Common.Common;
 using GONOrderingSystems.Common.Providers.Interface;
 using Prometheus.Client;
+using System.Threading.Tasks;
 
 namespace GONOrderingSystems.Common.Providers.Implementation
 {
@@ -36,6 +37,11 @@ namespace GONOrderingSystems.Common.Providers.Implementation
                     _failedValidationCounter.Inc();
                     break;
             }
+        }
+
+        public async Task RestCounterIncrement(string url, string MetricType)
+        {
+            await Util.PostApi(url, MetricType);
         }
     }
 }

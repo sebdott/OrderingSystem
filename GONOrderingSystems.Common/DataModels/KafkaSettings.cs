@@ -11,12 +11,14 @@ namespace GONOrderingSystems.Common.DataModels
         [ProtoMember(1)]
         public string BrokerList { get; set; }
         [ProtoMember(2)]
-        public string Topic { get; set; }
+        public string OrderTopic { get; set; }
         [ProtoMember(3)]
-        public string ConsumerGroupId { get; set; }
+        public string LogTopic { get; set; }
         [ProtoMember(4)]
-        public string ProducerGroupId { get; set; }
+        public string ConsumerGroupId { get; set; }
         [ProtoMember(5)]
+        public string ProducerGroupId { get; set; }
+        [ProtoMember(6)]
         public int Partition { get; set; }
     }
 

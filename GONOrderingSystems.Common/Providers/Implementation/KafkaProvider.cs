@@ -1,12 +1,8 @@
 ﻿using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
 using GONOrderingSystems.Common.Providers.Interface;
-using Serilog;
-using Serilog.Core;
-using Serilog.Sinks.Graylog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace GONOrderingSystems.Common.Providers.Implementation
@@ -72,7 +68,6 @@ namespace GONOrderingSystems.Common.Providers.Implementation
 
             return _producer;
         }
-
 
         public void Dispose()
         {

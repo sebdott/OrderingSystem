@@ -54,20 +54,22 @@ namespace GONOrderingSystems.Controllers
         }
 
         [HttpPost]
-        public async Task<string> SubmitOrder([FromBody]SubmitOrderDto submitOrderDto)
+        public async Task<IActionResult> SubmitOrder([FromBody]SubmitOrderDto submitOrderDto)
         {
-            _prometheusProvider.CounterIncrement(MetricCounter.OrderRequestCounter);
-
             try
             {
+
+                _prometheusProvider.CounterIncrement(MetricCounter.OrderRequestCounter);
+
                 var order = Mapper.Map<Order>(submitOrderDto);
                 order.OrderSubmitTime = DateTime.Now;
                 
                 if (!await _orderManager.OrderValidation(order, true))
                 {
+                    _prometheusProvider.CounterIncrement(MetricCounter.FailedRequestCounter);
                     _prometheusProvider.CounterIncrement(MetricCounter.FailedValidationCounter);
-                    
-                    throw new Exception("Warning: Order Validation Fail");
+
+                    return NotFound("Warning: Order Validation Fail");
                 }
 
                 await _orderManager.CreateOrder(order);
@@ -78,59 +80,20 @@ namespace GONOrderingSystems.Controllers
                 }
                 else
                 {
-                    throw new Exception("Warning: Order Creation Fail");
+                    _prometheusProvider.CounterIncrement(MetricCounter.FailedRequestCounter);
+                    return NotFound("Warning: Order Creation Fail");
                 }
 
-                return order.OrderId;
+                return Ok(order.OrderId);
              
             }
             catch (Exception ex)
             {
-                _prometheusProvider.CounterIncrement(MetricCounter.ExceptionCounter);
                 _prometheusProvider.CounterIncrement(MetricCounter.FailedRequestCounter);
-                _logProvider.PublishError("SubmitOrder([FromBody]OrderDto order)", "Order Fail" + JsonConvert.SerializeObject(submitOrderDto), ex);
-                throw new Exception("Warning: Error submit order, please contact admin person");
-            }
-        }
-
-        [HttpPost]
-        public async Task<string> CommitOrder([FromBody]CommitOrderDto commitOrderDto)
-        {
-            try
-            {
-                var order = Mapper.Map<Order>(commitOrderDto);
-                if (!await _orderManager.OrderValidation(order, false))
-                {
-                    throw new Exception("Warning: Order Validation Fail");
-                }
-
-                var orderToCommit = Mapper.Map<Order>(commitOrderDto);
-                
-                var success = await _orderManager.CommitOrder(orderToCommit);
-
-                if (success && !string.IsNullOrEmpty(orderToCommit.OrderId))
-                {
-                    _prometheusProvider.CounterIncrement(MetricCounter.SuccessOrderCounter);
-                    _logProvider.PublishInfo(commitOrderDto.EventID, "Order Success -" + JsonConvert.SerializeObject(commitOrderDto));
-
-                    return orderToCommit.OrderId;
-                }
-                else
-                {
-                    _logProvider.PublishInfo("CommitOrder([FromBody]CommitOrderDto commitOrderDto)", "Fail to Commit " + JsonConvert.SerializeObject(commitOrderDto));
-                    _prometheusProvider.CounterIncrement(MetricCounter.OrderRequestCounter);
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
                 _prometheusProvider.CounterIncrement(MetricCounter.ExceptionCounter);
-                _prometheusProvider.CounterIncrement(MetricCounter.FailedCommitCounter);
-                _logProvider.PublishError("CommitOrder([FromBody]OrderDto order)", "Order Fail" + JsonConvert.SerializeObject(commitOrderDto), ex);
-                throw new Exception("Warning: Error commit order, please contact admin person");
+                _logProvider.PublishError("SubmitOrder([FromBody]OrderDto order)", "Order Fail" + JsonConvert.SerializeObject(submitOrderDto), ex);
+                return NotFound("Warning: Error submit order, please contact admin person");
             }
-        }
-        
-        
+        }        
     }
 }

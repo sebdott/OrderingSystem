@@ -17,12 +17,20 @@ namespace GONOrderingSystems.Tests.Common
             Assert.Equal(finalResult.OrderId, order.OrderId);
             Assert.Equal(finalResult.EventID, order.EventID);
 
-            var kafkaSettings = new KafkaSettings() { BrokerList = "TestBrokerList1", ConsumerGroupId = "TestConsumerGroupId", ProducerGroupId = "TestProducerGroupId", Topic = "TestTopic" };
+            var kafkaSettings = new KafkaSettings() { BrokerList = "TestBrokerList1", ConsumerGroupId = "TestConsumerGroupId", ProducerGroupId = "TestProducerGroupId", LogTopic = "TestTopic" };
 
             var finalResult2 = TestSerializedDeserliazedData(kafkaSettings);
 
             Assert.Equal(finalResult2.ProducerGroupId, kafkaSettings.ProducerGroupId);
             Assert.Equal(finalResult2.BrokerList, kafkaSettings.BrokerList);
+
+
+            var logItem = new LogItem() { Identifier = "TestIdentifier", Message = "TestMessage", Exception = "TestException", Type = "TestType" };
+
+            var finalResult3 = TestSerializedDeserliazedData(logItem);
+
+            Assert.Equal(finalResult3.Identifier, logItem.Identifier);
+            Assert.Equal(finalResult3.Message, logItem.Message);
         }
 
         [Theory]

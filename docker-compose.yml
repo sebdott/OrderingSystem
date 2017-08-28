@@ -50,7 +50,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=secret
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     links:
       - prometheus-server
 
@@ -83,11 +83,6 @@ services:
       - 12201:12201/udp
       - 12202:12202/udp
       - 1514:1514/udp
-  gonorderingsystems.consumer:
-    image: gonorderingsystems.consumer
-    build:
-      context: ./GONOrderingSystems.Consumer
-      dockerfile: Dockerfile
 
   gonorderingsystems.api:
     image: gonorderingsystems.api
@@ -103,3 +98,17 @@ services:
     - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - admin-password=123456789
+
+  gonorderingsystems.services.order:
+    image: gonorderingsystems.services.order
+    build:
+      context: ./GONOrderingSystems.Services.Order
+      dockerfile: Dockerfile
+
+  gonorderingsystems.services.log:
+    image: gonorderingsystems.services.log
+    build:
+      context: ./GONOrderingSystems.Services.Log
+      dockerfile: Dockerfile

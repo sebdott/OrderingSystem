@@ -31,7 +31,6 @@ namespace GONOrderingSystems.Apis
 
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<SubmitOrderDto, Order>();
-                cfg.CreateMap<CommitOrderDto, Order>();
             });
         }
 
@@ -43,8 +42,7 @@ namespace GONOrderingSystems.Apis
 
             services.AddSingleton<IDeadlineManager, DeadlineManager>();
             services.AddSingleton<IOrderManager, OrderManager>();
-            services.AddSingleton<ILogProvider, LogProvider>(s => new LogProvider(Configuration["GraylogSettings:Host"].ToString()
-            , Int32.Parse(Configuration["GraylogSettings:Port"].ToString())));
+            services.AddSingleton<ILogProvider, LogProvider>();
 
             services.AddSingleton<IDataProvider, MongoDBProvider>(settings => new MongoDBProvider(
                 Configuration["MongoDbSettings:Host"].ToString(),

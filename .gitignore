@@ -3,3 +3,16 @@
 ################################################################################
 
 /GONOrderingSystems.Common/bin/Debug/netcoreapp1.1
+/GONOrderingSystems.Common/obj
+/GONOrderingSystems.Logic/bin/Debug/netcoreapp1.1
+/GONOrderingSystems.Logic/obj
+/GONOrderingSystems.Services.Log/bin/Debug/netcoreapp1.1
+/GONOrderingSystems.Services.Log/obj
+/GONOrderingSystems.Services.Order/bin/Debug/netcoreapp1.1
+/GONOrderingSystems.Services.Order/obj
+/GONOrderingSystems.Tests/obj
+/obj
+/GONOrderingSystems.Api/obj
+/GONOrderingSystems.Api/bin/Debug/netcoreapp1.1
+/.vs
+/GONOrderingSystems.Tests/bin/Debug/netcoreapp1.1

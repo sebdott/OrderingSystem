@@ -7,6 +7,7 @@ namespace GONOrderingSystems.Common.Common
     public class Constant
     {
         public const string LoggingFormat = "{0} - {1}";
+        public const string AppSettingsFile = "appsettings.json";
     }
 
     public class Status
@@ -25,5 +26,11 @@ namespace GONOrderingSystems.Common.Common
         public const string ExceptionCounter = "GONOrderingSystems_Api_ExceptionCounter";
         public const string FailedCommitCounter = "GONOrderingSystems_Api_FailedCommitCounter";
 
+    }
+
+    public class LogType
+    {
+        public const string Error = "Exception";
+        public const string Information = "Information";
     }
 }

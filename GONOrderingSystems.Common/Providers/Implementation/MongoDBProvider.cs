@@ -58,7 +58,7 @@ namespace GONOrderingSystems.Common.Providers.Implementation
             try
             {
                 var _collection = _db.GetCollection<Order>(_orderCollection);
-
+                
                 var replaceOneResult = await _collection.ReplaceOneAsync(
                  s => s.OrderId == order.OrderId,
                  order);

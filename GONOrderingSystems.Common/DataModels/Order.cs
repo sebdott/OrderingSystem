@@ -11,6 +11,17 @@ namespace GONOrderingSystems.Common.DataModels
     [ProtoContract]
     public class Order
     {
+        public Order()
+        {
+            OrderId = string.Empty;
+            Username = string.Empty;
+            EventID = string.Empty;
+            OrderSubmitTime = new DateTime();
+            ValueA = string.Empty;
+            ValueB = string.Empty;
+            ValueAValueB = string.Empty;
+            Status = string.Empty;
+        }
 
         [ProtoMember(1)]
         [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]

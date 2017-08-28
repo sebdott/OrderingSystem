@@ -6,10 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="0.11.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Prometheus.Client" Version="1.1.2" />
     <PackageReference Include="protobuf-net" Version="2.3.2" />
-    <PackageReference Include="Serilog.Sinks.Graylog" Version="1.5.1" />
   </ItemGroup>
 
 </Project>

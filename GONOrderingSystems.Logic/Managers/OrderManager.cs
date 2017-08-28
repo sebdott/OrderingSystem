@@ -37,16 +37,6 @@ namespace GONOrderingSystems.Logic.Managers
             return saveResult;
         }
 
-        public async Task<bool> CommitOrder(Order order)
-        {
-            order.Status = Status.Failure;
-
-            await ProcessOrder(order);
-            var saveResult = await _dataProvider.Update(order);
-
-            return saveResult;
-        }
-
         public async Task<Order> GetOrder(string orderId)
         {
             return await _dataProvider.Get(orderId);
@@ -56,9 +46,13 @@ namespace GONOrderingSystems.Logic.Managers
             using (var producer = _pubSubProvider.GetPublishProvider(_kafkaSettings.Value.BrokerList,
                                       _kafkaSettings.Value.ProducerGroupId))
             {
-                producer.ProduceAsync(_kafkaSettings.Value.Topic, null, Serializer.Serialize(order).ToString(), _kafkaSettings.Value.Partition);
+                var deliveryReport = producer.ProduceAsync(_kafkaSettings.Value.OrderTopic, null, Serializer.Serialize(order).ToString(), _kafkaSettings.Value.Partition);
+                deliveryReport.ContinueWith(task =>
+                {
+                    Console.WriteLine($"Partition: {task.Result.Partition}, Offset: {task.Result.Offset}");
+                });
 
-                producer.Flush(100);
+                producer.Flush(1000);
             }
         }
 
@@ -96,12 +90,6 @@ namespace GONOrderingSystems.Logic.Managers
             }
         }
 
-        private async Task ProcessOrder(Order order)
-        {
-            order.ValueAValueB = order.ValueA + order.ValueB + "Done Processed";
-            order.Status = Status.Success;
-            await Task.Delay(100);
-        }
 
 
     }

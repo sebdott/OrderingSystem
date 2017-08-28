@@ -10,7 +10,7 @@ namespace GONOrderingSystems.Logic.Managers
         {
             var rnd = new Random();
             
-            return Task.FromResult<DateTime>(DateTime.Now.AddSeconds(rnd.Next(-10, 10)));
+            return Task.FromResult<DateTime>(DateTime.Now.AddSeconds(rnd.Next(1000, 10000)));
         }
     }
 }

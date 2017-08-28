@@ -8,7 +8,6 @@ namespace GONOrderingSystems.Controllers.Interface
     public interface IOrderApi
     {
         Task<Order> FetchOrder(string orderId);
-        Task<string> SubmitOrder([FromBody]SubmitOrderDto submitOrderDto);
-        Task<string> CommitOrder([FromBody]CommitOrderDto commitOrderDto);
+        Task<IActionResult> SubmitOrder([FromBody]SubmitOrderDto submitOrderDto);
     }
 }

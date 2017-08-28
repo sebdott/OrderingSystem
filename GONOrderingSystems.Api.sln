@@ -5,11 +5,6 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BF27FE14-3E39-4485-A9E7-850DE02421F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Consumer", "GONOrderingSystems.Consumer\GONOrderingSystems.Consumer.csproj", "{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8} = {E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Tests", "GONOrderingSystems.Tests\GONOrderingSystems.Tests.csproj", "{3F74C830-F7E4-4E80-8388-204F4D4727A1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Api", "GONOrderingSystems.Api\GONOrderingSystems.Api.csproj", "{7166E9B5-AACE-4929-8B38-239B7CC88C75}"
@@ -17,6 +12,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Logic", "GONOrderingSystems.Logic\GONOrderingSystems.Logic.csproj", "{DED9B26C-7DBF-4B42-9584-DF8FF7329A44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Common", "GONOrderingSystems.Common\GONOrderingSystems.Common.csproj", "{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GONOrderingSystems.Services.Order", "GONOrderingSystems.Services.Order\GONOrderingSystems.Services.Order.csproj", "{784296EA-CE4F-4CD5-8A23-A17209A252B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GONOrderingSystems.Services.Log", "GONOrderingSystems.Services.Log\GONOrderingSystems.Services.Log.csproj", "{556E1D8D-23E8-42C2-BDF9-692453334052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +27,6 @@ Global
 		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF27FE14-3E39-4485-A9E7-850DE02421F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A922B81-DE61-4FB7-BD88-A7CD623FDC98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F74C830-F7E4-4E80-8388-204F4D4727A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,6 +43,14 @@ Global
 		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E36DFF13-3A7E-48D7-89D4-BB4EE50F2CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{784296EA-CE4F-4CD5-8A23-A17209A252B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{784296EA-CE4F-4CD5-8A23-A17209A252B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{784296EA-CE4F-4CD5-8A23-A17209A252B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{784296EA-CE4F-4CD5-8A23-A17209A252B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556E1D8D-23E8-42C2-BDF9-692453334052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556E1D8D-23E8-42C2-BDF9-692453334052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556E1D8D-23E8-42C2-BDF9-692453334052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556E1D8D-23E8-42C2-BDF9-692453334052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
