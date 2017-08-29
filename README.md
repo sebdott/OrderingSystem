@@ -40,4 +40,4 @@ docker-compose up
 ```
 
 This is a rough idea of the process of this system.
-![alt text](http://www.codedsphere.com/wp-content/uploads/2017/08/Gonsystems.png)
+![alt text](http://www.codedsphere.com/wp-content/uploads/2017/08/Gonsystemsv2.png)
