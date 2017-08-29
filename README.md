@@ -61,6 +61,8 @@ Find the line -p <public port>:<private port> and do the necessary modifications
 ```
 
 There are a few applications that contains a UI screen for better user management
+I have already pre-set all the username and password settings. You can login to the accounts below.
+
 ```
 Portainer : Docker Managmenet UI :  localhost:9000 
 username : gonadmin 
@@ -78,7 +80,10 @@ password : admin
 There are some additional steps required for GrayLog in order to work properly
 ```
  - Go to GrayLog link localhost:9038 
- - Login to GrayLog using these credentials (username: admin, password: admin)
+ - Login to GrayLog using these credentials
+     username: admin
+     password: admin
+     
  - Go to System > Content Packs and click on the Import contect pack.
 
 Upload the file  \DockerConfig\graylog\content_pack.json
