@@ -22,7 +22,8 @@ namespace GONOrderingSystems.Common.Common
         public const string OrderRequestCounter = "GONOrderingSystems_Api_OrderRequestCounter";
         public const string FailedRequestCounter = "GONOrderingSystems_Api_FailedRequestCounter";
         public const string FailedValidationCounter = "GONOrderingSystems_Api_FailedValidationCounter";
-        public const string SuccessOrderCounter = "GONOrderingSystems_Api_SuccessOrderCounter";
+        public const string SuccessOrderCreatedCounter = "GONOrderingSystems_Api_SuccessOrderCreatedCounter";
+        public const string SuccessCommitCounter = "GONOrderingSystems_Api_SuccessCommitCounter";
         public const string ExceptionCounter = "GONOrderingSystems_Api_ExceptionCounter";
         public const string FailedCommitCounter = "GONOrderingSystems_Api_FailedCommitCounter";
 

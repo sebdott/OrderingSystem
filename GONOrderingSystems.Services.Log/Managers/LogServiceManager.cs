@@ -4,6 +4,7 @@ using Serilog;
 using Serilog.Sinks.Graylog;
 using System;
 using GONOrderingSystems.Services.Log.Interface;
+using Microsoft.Extensions.Options;
 
 namespace GONOrderingSystems.Services.Log.Managers
 {
@@ -11,16 +12,16 @@ namespace GONOrderingSystems.Services.Log.Managers
     {
         private static Serilog.Core.Logger _logger;
 
-        public LogServiceManager(GraylogSettings graylogSettings)
+        public LogServiceManager(IOptions<GraylogSettings> graylogSettings)
         {
             var loggerConfig = new LoggerConfiguration()
                   .WriteTo.Graylog(new GraylogSinkOptions
                   {
-                      HostnameOrAdress = graylogSettings.Host,
-                      Port = graylogSettings.Port
+                      HostnameOrAdress = graylogSettings.Value.Host,
+                      Port = graylogSettings.Value.Port
                   });
 
-            if (_logger != null)
+            if (_logger == null)
             {
                 _logger = loggerConfig.CreateLogger();
             }

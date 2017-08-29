@@ -55,7 +55,7 @@ namespace GONOrderingSystems.Services.Order
                                 if (!string.IsNullOrEmpty(orderValue.OrderId))
                                 {   
                                     Task.Run(() => _logProvider.PublishInfo(orderValue.EventID, "Order Success -" + JsonConvert.SerializeObject(orderValue)));
-                                    _metricsProvider.RestCounterIncrement(_configuration["RestHostSettings:Host"].ToString(), MetricCounter.SuccessOrderCounter);
+                                    _metricsProvider.RestCounterIncrement(_configuration["RestHostSettings:Host"].ToString(), MetricCounter.SuccessCommitCounter);
                                 }
                                 else
                                 {

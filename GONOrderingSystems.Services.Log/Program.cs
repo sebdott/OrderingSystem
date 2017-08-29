@@ -8,6 +8,7 @@ using Confluent.Kafka;
 using GONOrderingSystems.Common.DataModels;
 using Newtonsoft.Json;
 using GONOrderingSystems.Services.Log.Interface;
+using GONOrderingSystems.Services.Log.Managers;
 
 namespace GONOrderingSystems.Services.Log
 {
@@ -48,7 +49,7 @@ namespace GONOrderingSystems.Services.Log
                             var committedOffsets = consumer.CommitAsync(msg).Result;
                         }
                     }
-                    catch
+                    catch(Exception ex)
                     {
 
                     }
@@ -76,9 +77,12 @@ namespace GONOrderingSystems.Services.Log
                 var serviceProvider = new ServiceCollection()
                 .AddSingleton<IPubSubProvider, KafkaProvider>()
                 .AddSingleton<ILogProvider, LogProvider>()
+                .AddSingleton<ILogServiceManager, LogServiceManager>()
+                .Configure<KafkaSettings>(_configuration.GetSection("KafkaSettings"))
+                .Configure<GraylogSettings>(_configuration.GetSection("GraylogSettings"))
+                .AddOptions()
                 .BuildServiceProvider();
                 
-                var dbProvider = serviceProvider.GetService<IPubSubProvider>();
                 _pubSubProvider = serviceProvider.GetService<IPubSubProvider>();
                 _logProvider = serviceProvider.GetService<ILogProvider>();
                 _logServiceManager = serviceProvider.GetService<ILogServiceManager>();

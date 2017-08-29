@@ -17,17 +17,7 @@ This is the list of technologies used :-
                           ZooKeeper (https://zookeeper.apache.org/)
 - **Docker Management UI** : Portainer (https://portainer.io/)
 
-**Local Path/Ports** : -
 
-- **Web Api** : localhost:801/swagger
-- **Zookeeper** : localhost:32182
-- **kafka** : localhost:9092
-- **Prometheus** : localhost:9090
-- **Gafana** : localhost:3000
-- **GrayLog** : localhost:9038
-- **MongoDB** : localhost:27017
-- **ElasticSearch** : localhost:9200
-- **Portainer** : localhost:9000
 
 **Tools Used:-**
 - Visual Studio 2017
@@ -36,6 +26,7 @@ This is the list of technologies used :-
 **Installation Instruction**
 
 ```
+docker-compose -f docker-compose.ci.build.yml up
 docker-compose up
 ```
 

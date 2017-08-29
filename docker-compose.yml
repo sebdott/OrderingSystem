@@ -53,11 +53,13 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     links:
       - prometheus-server
+    volumes:
+      - ./DockerConfig/volumes/grafana/var/lib/grafana:/var/lib/grafana
 
   mongodb:
     image: mongo:latest
     ports:
-        - 27017:27017
+      - 27017:27017
 
   elasticsearch:
     image: "elasticsearch"
@@ -98,8 +100,7 @@ services:
     - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - admin-password=123456789
+      - ./DockerConfig/volumes/portainer:/data
 
   gonorderingsystems.services.order:
     image: gonorderingsystems.services.order

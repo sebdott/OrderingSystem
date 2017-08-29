@@ -76,7 +76,8 @@ namespace GONOrderingSystems.Controllers
 
                 if (!string.IsNullOrEmpty(order.OrderId))
                 {
-                   await _orderManager.SendToCommit(order);
+                    _prometheusProvider.CounterIncrement(MetricCounter.SuccessOrderCreatedCounter);
+                    await _orderManager.SendToCommit(order);
                 }
                 else
                 {

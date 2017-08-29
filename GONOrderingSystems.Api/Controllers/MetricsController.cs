@@ -5,16 +5,13 @@ using Prometheus.Client;
 using Prometheus.Client.Collectors;
 using GONOrderingSystems.Common.Providers.Interface;
 using GONOrderingSystems.Api.Controllers.Interface;
-using GONOrderingSystems.Common.Common;
-using System.Threading.Tasks;
 
 namespace GONOrderingSystems.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class MetricsController : Controller, IMetricsApi
     {
         IMetricsProvider _metricsProvider;
-        ILogProvider _logProvider;
         public MetricsController(IMetricsProvider metricsProvider, ILogProvider logProvider)
         {
             _metricsProvider = metricsProvider;
@@ -39,7 +36,7 @@ namespace GONOrderingSystems.Api.Controllers
             return Ok(content);
         }
 
-        [HttpPost]
+        [HttpPost, Route("[action]")]
         public void CounterIncrease([FromBody]string metricType)
         {
             _metricsProvider.CounterIncrement(metricType);
