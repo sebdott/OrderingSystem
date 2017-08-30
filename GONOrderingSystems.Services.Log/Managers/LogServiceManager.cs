@@ -5,6 +5,7 @@ using Serilog.Sinks.Graylog;
 using System;
 using GONOrderingSystems.Services.Log.Interface;
 using Microsoft.Extensions.Options;
+using System.Threading;
 
 namespace GONOrderingSystems.Services.Log.Managers
 {
@@ -14,16 +15,39 @@ namespace GONOrderingSystems.Services.Log.Managers
 
         public LogServiceManager(IOptions<GraylogSettings> graylogSettings)
         {
-            var loggerConfig = new LoggerConfiguration()
-                  .WriteTo.Graylog(new GraylogSinkOptions
-                  {
-                      HostnameOrAdress = graylogSettings.Value.Host,
-                      Port = graylogSettings.Value.Port
-                  });
 
-            if (_logger == null)
+            var retry = true;
+            var retryNo = 0;
+
+            while (retry)
             {
-                _logger = loggerConfig.CreateLogger();
+                try
+                {
+                    var loggerConfig = new LoggerConfiguration()
+                                     .WriteTo.Graylog(new GraylogSinkOptions
+                                     {
+                                         HostnameOrAdress = graylogSettings.Value.Host,
+                                         Port = graylogSettings.Value.Port
+                                     });
+
+                    if (_logger == null)
+                    {
+                        _logger = loggerConfig.CreateLogger();
+                    }
+
+                    retry = false;
+                }
+                catch (Exception ex)
+                {
+                    retryNo++;
+                    Thread.Sleep(5000);
+                }
+
+                if (retryNo > 3)
+                {
+                    retry = false;
+                }
+
             }
         }
 
