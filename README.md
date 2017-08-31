@@ -32,10 +32,16 @@ First of all you need docker to be set up in your machine.
 For me I am running on Windos OS which my docker containers will be running on Linux settings
 You can go to (https://www.docker.com/community-edition) to get the latest version of docker downloads
 
-Go to powershell and run the 2 commands below to build and bring up the environment
+Go to powershell
+
+Run this command to build this source
 
 ```
 docker-compose -f docker-compose.ci.build.yml up
+```
+
+Run this command to bring up all the applications and environments in docker
+```
 docker-compose up
 ```
 
@@ -53,6 +59,7 @@ Once the environment is being brought up you will have the list of application r
 - **ElasticSearch** : localhost:9200
 - **Portainer** : localhost:9000
 
+
 I have ported the necessary port numbers to your machine ports
 If your machine have occupied these port numbers you may change it in the docker compose config file (docker-compose.yml) 
 
@@ -63,30 +70,45 @@ Find the line -p <public port>:<private port> and do the necessary modifications
 There are a few applications that contains a UI screen for better user management
 I have already pre-set all the username and password settings. You can login to the accounts below.
 
+
+**Portainer : Docker Managmenet UI :  **
 ```
-Portainer : Docker Managmenet UI :  localhost:9000 
+link : localhost:9000 
 username : gonadmin 
 password : gonadmin
+```
 
-Grafana : Metric Display :  localhost:9038 
+**Grafana : Metric Display :**  
+```
+link : localhost:9038 
 username : gonadmin 
 password : gonadmin
+```
 
-GrayLog : Log Management :  localhost:9038 
+** GrayLog : Log Management : **  
+```
+link : localhost:9038 
 username : admin 
 password : admin
 ```
 
 There are some additional steps required for GrayLog in order to work properly
-```
- - Go to GrayLog link localhost:9038 
+
+ - Go to GrayLog link **localhost:9038 **
+
  - Login to GrayLog using these credentials
-     username: admin
-     password: admin
-     
- - Go to System > Content Packs and click on the Import contect pack.
 
-Upload the file  \DockerConfig\graylog\content_pack.json
+```
+username: admin
+password: admin
+```
+     
+ - Go to **System** > **Content Packs** and click on the **Import Contect Pack**.
+
+Upload the file in the source
+```
+.\DockerConfig\graylog\content_pack.json
 ```
 
-Once uploaded, you are ready to use Graylog to get all the log information from GON Ordering system
+
+Once uploaded, you are ready to use Graylog to get all the log information from **GON Ordering system**
