@@ -3,6 +3,9 @@
 The Ordering System is a Rest API backend processor 
 designed to handle group orders from multiple customers
 
+You can go to my blog to have more details about this application:
+http://www.codedsphere.com/gon-ordering-system/
+
 This is the list of technologies used :- 
 
 **Technologies:-**
@@ -103,12 +106,12 @@ username: admin
 password: admin
 ```
      
- - Go to **System** > **Content Packs** and click on the **Import Contect Pack**.
+Go to **System** > **Content Packs** and click on the **Import Contect Pack**.
 
 Upload the file in the source
 ```
 .\DockerConfig\graylog\content_pack.json
 ```
-
-
 Once uploaded, you are ready to use Graylog to get all the log information from **GON Ordering system**
+
+![alt text](http://www.codedsphere.com/wp-content/uploads/2017/08/img_59a780cd0f79e-1024x403.png)
