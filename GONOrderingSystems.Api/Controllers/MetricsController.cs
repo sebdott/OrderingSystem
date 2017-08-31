@@ -36,6 +36,7 @@ namespace GONOrderingSystems.Api.Controllers
             return Ok(content);
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPost, Route("[action]")]
         public void CounterIncrease([FromBody]string metricType)
         {
